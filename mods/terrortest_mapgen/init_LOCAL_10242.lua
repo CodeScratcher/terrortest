@@ -305,12 +305,10 @@ minetest.register_on_joinplayer(function(player)
         skybox.set(player, 7)
     end
 end)
-
 local interval = 1
 local wait = 0
 
 minetest.register_globalstep(function(dtime)
-  wait = wait + dtime
 
 wait = wait + dtime
 if wait < interval then return end
