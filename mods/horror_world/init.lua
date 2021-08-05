@@ -1,4 +1,3 @@
-
 minetest.register_node("horror_world:water_source", {
 	description = "Water Source",
 	drawtype = "liquid",
