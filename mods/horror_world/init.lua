@@ -1,3 +1,4 @@
+local night = false
 minetest.register_node("horror_world:water_source", {
 	description = "Water Source",
 	drawtype = "liquid",
@@ -298,7 +299,7 @@ minetest.register_alias("mapgen_water_source", "horror_world:water_source")
 minetest.register_alias("mapgen_river_water_source", "horror_world:river_water_source")
 minetest.register_alias("mapgen_lava_source", "horror_world:lava_source")
 minetest.register_on_joinplayer(function(player) 
-    if minetest.get_timeofday() < 0.2 then
+    if night then
         skybox.set(player, 7)
     else
         skybox.set(player, 1)
@@ -316,7 +317,14 @@ wait = dtime
 -- this code will only execute once per sec max
 if minetest.get_timeofday() < 0.2 then
 -- it is night in the game world
+    if not night then
+        night = true
+        -- switch skyboxes
+    end
 else
+    if night then
+        night = false
+    end
 -- it is not night
 end
 
