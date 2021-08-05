@@ -1,5 +1,5 @@
 local night = false
-minetest.register_node("horror_world:water_source", {
+minetest.register_node("terrortest_core:water_source", {
     description = "Water Source",
     drawtype = "liquid",
     waving = 3,
@@ -35,14 +35,14 @@ minetest.register_node("horror_world:water_source", {
     drop = "",
     drowning = 1,
     liquidtype = "source",
-    liquid_alternative_flowing = "horror_water:water_flowing",
-    liquid_alternative_source = "horror_world:water_source",
+    liquid_alternative_flowing = "terrortest_core:water_flowing",
+    liquid_alternative_source = "terrortest_core:water_source",
     liquid_viscosity = 1,
     post_effect_color = {a = 103, r = 30, g = 60, b = 90},
     groups = {water = 3, liquid = 3, cools_lava = 1},
 })
 
-minetest.register_node("horror_world:water_flowing", {
+minetest.register_node("terrortest_core:water_flowing", {
     description = "Flowing Water",
     drawtype = "flowingliquid",
     waving = 3,
@@ -80,8 +80,8 @@ minetest.register_node("horror_world:water_flowing", {
     drop = "",
     drowning = 1,
     liquidtype = "flowing",
-    liquid_alternative_flowing = "horror_world:water_flowing",
-    liquid_alternative_source = "horror_world:water_source",
+    liquid_alternative_flowing = "terrortest_core:water_flowing",
+    liquid_alternative_source = "terrortest_core:water_source",
     liquid_viscosity = 1,
     post_effect_color = {a = 103, r = 30, g = 60, b = 90},
     groups = {
@@ -91,7 +91,7 @@ minetest.register_node("horror_world:water_flowing", {
 })
 
 
-minetest.register_node("horror_world:river_water_source", {
+minetest.register_node("terrortest_core:river_water_source", {
     description = "River Water Source",
     drawtype = "liquid",
     tiles = {
@@ -126,8 +126,8 @@ minetest.register_node("horror_world:river_water_source", {
     drop = "",
     drowning = 1,
     liquidtype = "source",
-    liquid_alternative_flowing = "horror_world:river_water",
-    liquid_alternative_source = "horror_world:river_water",
+    liquid_alternative_flowing = "terrortest_core:river_water",
+    liquid_alternative_source = "terrortest_core:river_water",
     liquid_viscosity = 1,
     -- Not renewable to avoid horizontal spread of water sources in sloping
     -- rivers that can cause water to overflow riverbanks and cause floods.
@@ -140,7 +140,7 @@ minetest.register_node("horror_world:river_water_source", {
     
 })
 
-minetest.register_node("horror_world:river_water_flowing", {
+minetest.register_node("terrortest_core:river_water_flowing", {
     description = "Flowing River Water",
     drawtype = "flowingliquid",
     tiles = {"river_water.png"},
@@ -177,8 +177,8 @@ minetest.register_node("horror_world:river_water_flowing", {
     drop = "",
     drowning = 1,
     liquidtype = "flowing",
-    liquid_alternative_flowing = "horror_world:river_water_flowing",
-    liquid_alternative_source = "horror_world:river_water_source",
+    liquid_alternative_flowing = "terrortest_core:river_water_flowing",
+    liquid_alternative_source = "terrortest_core:river_water_source",
     liquid_viscosity = 1,
     liquid_renewable = false,
     liquid_range = 2,
@@ -190,7 +190,7 @@ minetest.register_node("horror_world:river_water_flowing", {
 })
 
 
-minetest.register_node("horror_world:lava_source", {
+minetest.register_node("terrortest_core:lava_source", {
     description = "Lava Source",
     drawtype = "liquid",
     tiles = {
@@ -225,8 +225,8 @@ minetest.register_node("horror_world:lava_source", {
     drop = "",
     drowning = 1,
     liquidtype = "source",
-    liquid_alternative_flowing = "horror_world:lava_flowing",
-    liquid_alternative_source = "horror_world:lava_source",
+    liquid_alternative_flowing = "terrortest_core:lava_flowing",
+    liquid_alternative_source = "terrortest_core:lava_source",
     liquid_viscosity = 7,
     liquid_renewable = false,
     damage_per_second = 4 * 2,
@@ -234,7 +234,7 @@ minetest.register_node("horror_world:lava_source", {
     groups = {lava = 3, liquid = 2, igniter = 1},
 })
 
-minetest.register_node("horror_world:lava_flowing", {
+minetest.register_node("terrortest_core:lava_flowing", {
     description = "Flowing Lava",
     drawtype = "flowingliquid",
     tiles = {"lava.png"},
@@ -271,8 +271,8 @@ minetest.register_node("horror_world:lava_flowing", {
     drop = "",
     drowning = 1,
     liquidtype = "flowing",
-    liquid_alternative_flowing = "horror_world:lava_flowing",
-    liquid_alternative_source = "horror_world:lava_source",
+    liquid_alternative_flowing = "terrortest_core:lava_flowing",
+    liquid_alternative_source = "terrortest_core:lava_source",
     liquid_viscosity = 7,
     liquid_renewable = false,
     damage_per_second = 4 * 2,
@@ -282,7 +282,7 @@ minetest.register_node("horror_world:lava_flowing", {
         not_in_creative_inventory = 1
     },
 })
-minetest.register_node("horror_world:stone", {
+minetest.register_node("terrortest_core:stone", {
     description = "Stone",
     tiles = {"stone.png"},
     is_ground_content = true,
@@ -291,9 +291,9 @@ minetest.register_node("horror_world:stone", {
 
 minetest.register_biome({
     name = "stonelands",
-    node_top = "horror_world:stone",
+    node_top = "terrortest_core:stone",
     depth_top = 1,
-    node_filler = "horror_world:stone",
+    node_filler = "terrortest_core:stone",
     depth_filler = 3,
     y_max = 10,
     y_min = -3,
@@ -301,10 +301,10 @@ minetest.register_biome({
     humidity_point = 50,
 })
 
-minetest.register_alias("mapgen_stone",              "horror_world:stone")
-minetest.register_alias("mapgen_water_source",       "horror_world:water_source")
-minetest.register_alias("mapgen_river_water_source", "horror_world:river_water_source")
-minetest.register_alias("mapgen_lava_source",        "horror_world:lava_source")
+minetest.register_alias("mapgen_stone",              "terrortest_core:stone")
+minetest.register_alias("mapgen_water_source",       "terrortest_core:water_source")
+minetest.register_alias("mapgen_river_water_source", "terrortest_core:river_water_source")
+minetest.register_alias("mapgen_lava_source",        "terrortest_core:lava_source")
 
 minetest.register_on_joinplayer(function(player) 
     if night then
