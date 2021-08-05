@@ -300,9 +300,9 @@ minetest.register_alias("mapgen_river_water_source", "horror_world:river_water_s
 minetest.register_alias("mapgen_lava_source", "horror_world:lava_source")
 minetest.register_on_joinplayer(function(player) 
     if night then
-        skybox.set(player, 7)
-    else
         skybox.set(player, 1)
+    else
+        skybox.set(player, 7)
     end
 end)
 local interval = 1
@@ -319,11 +319,16 @@ if minetest.get_timeofday() < 0.2 then
 -- it is night in the game world
     if not night then
         night = true
-        -- switch skyboxes
+        for _, player in ipairs(minetest.get_connected_players()) do
+            skybox.set(player,1)
+        end
     end
 else
     if night then
         night = false
+	for _, player in ipairs(minetest.get_connected_players()) do
+            skybox.set(player,7)
+        end
     end
 -- it is not night
 end
