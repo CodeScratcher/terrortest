@@ -7,6 +7,7 @@ minetest.register_biome({
     node_filler = "terrortest_core:stone",
     depth_filler = 3,
     y_max = 10,
+    water_level = 30,
     y_min = -3,
     heat_point = 50,
     humidity_point = 50,
@@ -17,7 +18,7 @@ minetest.register_alias("mapgen_water_source",       "terrortest_core:water_sour
 minetest.register_alias("mapgen_river_water_source", "terrortest_core:river_water_source")
 minetest.register_alias("mapgen_lava_source",        "terrortest_core:lava_source")
 
-minetest.register_on_joinplayer(function(player) 
+minetest.register_on_joinplayer(function(player)
     if night then
         skybox.set(player, 1)
     else
