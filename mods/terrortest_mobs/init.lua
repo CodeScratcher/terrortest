@@ -1,0 +1,1 @@
+-- mobs to add (suggestion): rat, zombie, werewolf, phantom (like the one in MC)
