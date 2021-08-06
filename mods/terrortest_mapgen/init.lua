@@ -31,7 +31,6 @@ local wait = 0
 
 minetest.register_globalstep(function(dtime)
     wait = wait + dtime
-    wait = wait + dtime
 
     if wait < interval then return end
 
@@ -48,7 +47,7 @@ minetest.register_globalstep(function(dtime)
             end
         end
     else
-        -- it is not night in the game worls
+        -- it is not night in the game world
         if night then
             night = false
 
