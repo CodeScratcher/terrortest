@@ -281,9 +281,84 @@ minetest.register_node("terrortest_core:lava_flowing", {
     },
 })
 
+minetest.register_item(":", {
+  type = "none",
+  wield_scale = {x=1, y=1, z=2.5},
+  tool_capabilities = {
+    full_punch_interval = 0.9,
+    max_drop_level = 0,
+    groupcaps = {
+      crumbly = {times={[2]=3.00, [3]=0.70}, uses=0, maxlevel=1},
+      snappy = {times={[3]=0.40}, uses=0, maxlevel=1},
+      oddly_breakable_by_hand = {times={[1]=3.50,[2]=2.00,[3]=0.70}, uses=0}
+    },
+    damage_groups = {fleshy=1},
+  }
+})
+
 minetest.register_node("terrortest_core:stone", {
     description = "Stone",
     tiles = {"stone.png"},
     is_ground_content = true,
-    groups = {cracky = 3, stone = 1}
+    groups = {cracky = 3, stone = 1},
+})
+
+local function tt_register_ore_stuff(name, pretty_name, is)
+  minetest.register_node("terrortest_core:stone_with_" .. name, {
+    description = pretty_name .. " Ore",
+    tiles = {"stone.png^" .. name .. "_ore.png"},
+    is_ground_content = false,
+    groups = {cracky = 3},
+    drop = "terrortest_core:" .. name .. "_lump",
+  })
+
+  minetest.register_craftitem("terrortest_core:" .. name .. "_lump", {
+    description = pretty_name .. (is.lump and " Lump" or ""),
+    inventory_image = name .. "_lump.png"
+  })
+  
+  if is.ingot then
+    minetest.register_craftitem("terrortest_core:" .. name .. "_ingot", {
+      description = pretty_name .. " Ingot",
+      inventory_image = name .. "_ingot.png"
+    })
+  end
+  
+  if is.block then
+    minetest.register_node("terrortest_core:" .. name .. "_block", {
+      description = pretty_name .. " Block",
+      tiles = {name .. "_block.png"},
+      is_ground_content = false,
+      groups = {cracky = 3},
+    })
+
+    local block_recipe = "terrortest_core:" .. name .. (is.ingot and "_ingot" or "_lump")
+
+    minetest.register_craft({
+      type = "shaped",
+      output = "terrortest_core:" .. name .. "_block",
+      recipe = {
+        {block_recipe, block_recipe, block_recipe,},
+        {block_recipe, block_recipe, block_recipe,},
+        {block_recipe, block_recipe, block_recipe,},
+      },
+    })
+
+    minetest.register_craft({
+      type = "shapeless",
+      output = block_recipe .. " 9",
+      recipe = {
+        "terrortest_core:" .. name .. "_block",
+      },
+    })
+  end
+end
+
+tt_register_ore_stuff("coal", "Coal", {lump = true, ingot = false, block = true})
+
+minetest.register_node("terrortest_core:barren_tree", {
+    description = "Barren Tree Log",
+    tiles = {"barren_tree.png"},
+    is_ground_content = false,
+    groups = {choppy = 2, oddly_breakable_by_hand = 1, wood = 1, tree = 1, flammable = 2}
 })

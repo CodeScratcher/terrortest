@@ -64,7 +64,7 @@ local show_health = settings:get_bool("mob_show_health") ~= false
 local max_per_block = tonumber(settings:get("max_objects_per_block") or 99)
 local mob_nospawn_range = tonumber(settings:get("mob_nospawn_range") or 12)
 local active_limit = tonumber(settings:get("mob_active_limit") or 0)
-local mob_chance_multiplier = tonumber(settings:get("mob_chance_multiplier") or 1)
+local mob_chance_multiplier = tonumber(settings:get("mob_chance_multiplier") or 10)
 local peaceful_player_enabled = settings:get_bool("enable_peaceful_player")
 local mob_smooth_rotate = settings:get_bool("mob_smooth_rotate") ~= false
 local active_mobs = 0
@@ -91,7 +91,7 @@ local node_permanent_flame = "fire:permanent_flame"
 local node_ice = "default:ice"
 local node_snowblock = "default:snowblock"
 local node_snow = "default:snow"
-mobs.fallback_node = minetest.registered_aliases["mapgen_dirt"] or "default:dirt"
+mobs.fallback_node = minetest.registered_aliases["mapgen_stone"] or "default:dirt"
 
 local mob_class = {
 	stepheight = 1.1,

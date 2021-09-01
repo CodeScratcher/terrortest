@@ -18,6 +18,35 @@ minetest.register_alias("mapgen_water_source",       "terrortest_core:water_sour
 minetest.register_alias("mapgen_river_water_source", "terrortest_core:river_water_source")
 minetest.register_alias("mapgen_lava_source",        "terrortest_core:lava_source")
 
+minetest.register_decoration({
+    deco_type = "schematic",
+    place_on = {"mapgen_stone"},
+    sidelen = 7,
+    fill_ratio = 0.001,
+    biomes = {"stonelands"},
+    y_max = 200,
+    y_min = 1,
+    schematic = "./schematics/barren_tree.mts",
+    flags = "place_center_x, place_center_z",
+    rotation = "random",
+})
+
+local function tt_register_ore_gen(name, scarcity, num_ores, size, y_max, y_min)
+  minetest.register_ore({
+    ore_type       = "scatter",
+    ore            = "terrortest_core:stone_with_" .. name,
+    wherein        = "mapgen_stone",
+    clust_scarcity = scarcity,
+    clust_num_ores = num_ores,
+    clust_size     = size,
+    y_max          = y_max,
+    y_min          = y_min,
+  })
+end
+
+tt_register_ore_gen("coal", 8 * 8 * 8, 9, 3, 31000,   1025)
+tt_register_ore_gen("coal", 8 * 8 * 8, 8, 3,    64, -31000)
+
 minetest.register_on_joinplayer(function(player)
     if night then
         skybox.set(player, 1)

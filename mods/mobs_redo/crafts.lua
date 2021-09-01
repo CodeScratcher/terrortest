@@ -164,9 +164,9 @@ default.register_fence("mobs:fence_wood", {
 		}
 	}
 })
-end
 
 -- mob fence top (has enlarged collisionbox to stop mobs getting over)
+
 minetest.register_node("mobs:fence_top", {
 	description = S("Mob Fence Top"),
 	drawtype = "nodebox",
@@ -197,6 +197,7 @@ minetest.register_craft({
 	}
 })
 
+end
 
 -- items that can be used as fuel
 minetest.register_craft({
