@@ -4,7 +4,7 @@ minetest.register_node("terrortest_core:water_source", {
     waving = 3,
     tiles = {
         {
-            name = "river_water.png",
+            name = "terrortest_water.png",
             backface_culling = false,
             animation = {
                 type = "vertical_frames",
@@ -14,7 +14,7 @@ minetest.register_node("terrortest_core:water_source", {
             },
         },
         {
-            name = "river_water.png",
+            name = "terrortest_water.png",
             backface_culling = true,
             animation = {
                 type = "vertical_frames",
@@ -45,10 +45,10 @@ minetest.register_node("terrortest_core:water_flowing", {
     description = "Flowing Water",
     drawtype = "flowingliquid",
     waving = 3,
-    tiles = {"river_water.png"},
+    tiles = {"terrortest_water.png"},
     special_tiles = {
         {
-            name = "river_water.png",
+            name = "terrortest_water.png",
             backface_culling = false,
             animation = {
                 type = "vertical_frames",
@@ -58,7 +58,7 @@ minetest.register_node("terrortest_core:water_flowing", {
             },
         },
         {
-            name = "river_water.png",
+            name = "terrortest_water.png",
             backface_culling = true,
             animation = {
                 type = "vertical_frames",
@@ -95,7 +95,7 @@ minetest.register_node("terrortest_core:river_water_source", {
     drawtype = "liquid",
     tiles = {
         {
-            name = "river_water.png",
+            name = "terrortest_river_water.png",
             backface_culling = false,
             animation = {
                 type = "vertical_frames",
@@ -105,7 +105,7 @@ minetest.register_node("terrortest_core:river_water_source", {
             },
         },
         {
-            name = "river_water.png",
+            name = "terrortest_river_water.png",
             backface_culling = true,
             animation = {
                 type = "vertical_frames",
@@ -142,10 +142,10 @@ minetest.register_node("terrortest_core:river_water_source", {
 minetest.register_node("terrortest_core:river_water_flowing", {
     description = "Flowing River Water",
     drawtype = "flowingliquid",
-    tiles = {"river_water.png"},
+    tiles = {"terrortest_river_water.png"},
     special_tiles = {
         {
-            name = "river_water.png",
+            name = "terrortest_river_water.png",
             backface_culling = false,
             animation = {
                 type = "vertical_frames",
@@ -155,7 +155,7 @@ minetest.register_node("terrortest_core:river_water_flowing", {
             },
         },
         {
-            name = "river_water.png",
+            name = "terrortest_river_water.png",
             backface_culling = true,
             animation = {
                 type = "vertical_frames",
@@ -193,7 +193,7 @@ minetest.register_node("terrortest_core:lava_source", {
     drawtype = "liquid",
     tiles = {
         {
-            name = "lava.png",
+            name = "terrortest_lava.png",
             backface_culling = false,
             animation = {
                 type = "vertical_frames",
@@ -203,7 +203,7 @@ minetest.register_node("terrortest_core:lava_source", {
             },
         },
         {
-            name = "lava.png",
+            name = "terrortest_lava.png",
             backface_culling = true,
             animation = {
                 type = "vertical_frames",
@@ -235,10 +235,10 @@ minetest.register_node("terrortest_core:lava_source", {
 minetest.register_node("terrortest_core:lava_flowing", {
     description = "Flowing Lava",
     drawtype = "flowingliquid",
-    tiles = {"lava.png"},
+    tiles = {"terrortest_lava.png"},
     special_tiles = {
         {
-            name = "lava.png",
+            name = "terrortest_lava.png",
             backface_culling = false,
             animation = {
                 type = "vertical_frames",
@@ -248,7 +248,7 @@ minetest.register_node("terrortest_core:lava_flowing", {
             },
         },
         {
-            name = "lava.png",
+            name = "terrortest_lava.png",
             backface_culling = true,
             animation = {
                 type = "vertical_frames",
@@ -283,6 +283,7 @@ minetest.register_node("terrortest_core:lava_flowing", {
 
 minetest.register_item(":", {
   type = "none",
+  wield_image = "terrortest_wieldhand.png",
   wield_scale = {x=1, y=1, z=2.5},
   tool_capabilities = {
     full_punch_interval = 0.9,
@@ -298,15 +299,15 @@ minetest.register_item(":", {
 
 minetest.register_node("terrortest_core:stone", {
     description = "Stone",
-    tiles = {"stone.png"},
+    tiles = {"terrortest_normal_stone.png"},
     is_ground_content = true,
     groups = {cracky = 3, stone = 1},
 })
 
-local function tt_register_ore_stuff(name, pretty_name, is)
+local function tt_register_ore_stuff(name, pretty_name, in_name, is)
   minetest.register_node("terrortest_core:stone_with_" .. name, {
     description = pretty_name .. " Ore",
-    tiles = {"stone.png^" .. name .. "_ore.png"},
+    tiles = {"terrortest_" .. in_name .. ".png^terrortest_" .. name .. "_ore.png"},
     is_ground_content = false,
     groups = {cracky = 3},
     drop = "terrortest_core:" .. name .. "_lump",
@@ -327,7 +328,7 @@ local function tt_register_ore_stuff(name, pretty_name, is)
   if is.block then
     minetest.register_node("terrortest_core:" .. name .. "_block", {
       description = pretty_name .. " Block",
-      tiles = {name .. "_block.png"},
+      tiles = {"terrortest_" .. name .. "_block.png"},
       is_ground_content = false,
       groups = {cracky = 3},
     })
@@ -354,11 +355,18 @@ local function tt_register_ore_stuff(name, pretty_name, is)
   end
 end
 
-tt_register_ore_stuff("coal", "Coal", {lump = true, ingot = false, block = true})
+tt_register_ore_stuff("coal", "Coal", "normal_stone", {lump = true, ingot = false, block = true})
 
 minetest.register_node("terrortest_core:barren_tree", {
     description = "Barren Tree Log",
-    tiles = {"barren_tree.png"},
+    tiles = {
+      "terrortest_barren_tree_top.png",
+      "terrortest_barren_tree_top.png",
+      "terrortest_barren_tree_side.png",
+      "terrortest_barren_tree_side.png",
+      "terrortest_barren_tree_side.png",
+      "terrortest_barren_tree_side.png",
+    },
     is_ground_content = false,
     groups = {choppy = 2, oddly_breakable_by_hand = 1, wood = 1, tree = 1, flammable = 2}
 })
