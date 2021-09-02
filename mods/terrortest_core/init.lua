@@ -185,16 +185,17 @@ minetest.register_node("terrortest_core:barren_planks", {
 minetest.register_craft({
   type = "shapeless",
   output = "terrortest_core:barren_planks 4",
-  recipe = {{"terrortest_core:barren_tree"}},
+  recipe = {"terrortest_core:barren_tree"},
 })
 
 minetest.register_craftitem("terrortest_core:stick", {
   description = "Stick",
-  inventory_image = "terrortest_stick.png"
+  inventory_image = "terrortest_stick.png",
+
 })
 
 minetest.register_craft({
   type = "shapeless",
   output = "terrortest_core:stick 4",
-  recipe = {{"terrortest_core:barren_planks"}},
+  recipe = {"terrortest_core:barren_planks"},
 })
