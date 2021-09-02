@@ -1,5 +1,10 @@
 local night = false
 
+minetest.register_alias("mapgen_stone",              "terrortest_core:stone")
+minetest.register_alias("mapgen_water_source",       "terrortest_core:water_source")
+minetest.register_alias("mapgen_river_water_source", "terrortest_core:river_water_source")
+minetest.register_alias("mapgen_lava_source",        "terrortest_core:lava_source")
+
 minetest.register_biome({
     name = "stonelands",
     node_top = "terrortest_core:stone",
@@ -12,11 +17,6 @@ minetest.register_biome({
     heat_point = 50,
     humidity_point = 50,
 })
-
-minetest.register_alias("mapgen_stone",              "terrortest_core:stone")
-minetest.register_alias("mapgen_water_source",       "terrortest_core:water_source")
-minetest.register_alias("mapgen_river_water_source", "terrortest_core:river_water_source")
-minetest.register_alias("mapgen_lava_source",        "terrortest_core:lava_source")
 
 minetest.register_decoration({
     deco_type = "schematic",
