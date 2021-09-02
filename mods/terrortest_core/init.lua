@@ -1,4 +1,8 @@
-function tt_register_liquid(name, pretty_name, anim_len, viscosity, is_renewable, range, dmg, light, color, groups)
+------------------------------
+---- Liquid-related Stuff ----
+------------------------------
+
+local function tt_register_liquid(name, pretty_name, anim_len, viscosity, is_renewable, range, dmg, light, color, groups)
   minetest.register_node("terrortest_core:" .. name .. "_source", {
     description = pretty_name .. " Source",
     drawtype = "liquid",
@@ -83,6 +87,10 @@ tt_register_liquid("water",       "Water",       {source = 2.0, flowing = 0.5}, 
 tt_register_liquid("river_water", "River Water", {source = 2.0, flowing = 0.5}, 1, false, 2, 0 * 2, 0,  {a = 103, r =  30, g = 76, b = 90}, water_groups)
 tt_register_liquid("lava",        "Lava",        {source = 3.0, flowing = 3.3}, 7, false, 4, 4 * 2, 13, {a = 191, r = 255, g = 64, b =  0}, lava_groups)
 
+-----------------------------
+---- Stone-related Stuff ----
+-----------------------------
+
 local function tt_register_ore_stuff(name, pretty_name, in_name, is)
   minetest.register_node("terrortest_core:stone_with_" .. name, {
     description = pretty_name .. " Ore",
@@ -159,43 +167,48 @@ minetest.register_node("terrortest_core:stone", {
   groups = {cracky = 3, stone = 1},
 })
 
--- TODO write tt_register_wood_type()
-
-minetest.register_node("terrortest_core:barren_tree", {
-  description = "Barren Tree Log",
-  tiles = {
-    "terrortest_barren_tree_top.png",
-    "terrortest_barren_tree_top.png",
-    "terrortest_barren_tree_side.png",
-    "terrortest_barren_tree_side.png",
-    "terrortest_barren_tree_side.png",
-    "terrortest_barren_tree_side.png",
-  },
-  is_ground_content = false,
-  groups = {choppy = 2, oddly_breakable_by_hand = 1, wood = 1, tree = 1, flammable = 2},
-})
-
-minetest.register_node("terrortest_core:barren_planks", {
-  description = "Barren Tree Planks",
-  tiles = {"terrortest_barren_planks.png",},
-  is_ground_content = false,
-  groups = {choppy = 2, oddly_breakable_by_hand = 1, wood = 1, planks = 1, flammable = 2},
-})
-
-minetest.register_craft({
-  type = "shapeless",
-  output = "terrortest_core:barren_planks 4",
-  recipe = {"terrortest_core:barren_tree"},
-})
+----------------------------
+---- Wood-related Stuff ----
+----------------------------
 
 minetest.register_craftitem("terrortest_core:stick", {
   description = "Stick",
   inventory_image = "terrortest_stick.png",
-
 })
 
-minetest.register_craft({
-  type = "shapeless",
-  output = "terrortest_core:stick 4",
-  recipe = {"terrortest_core:barren_planks"},
-})
+local function tt_register_wood_type(name, pretty_name)
+  minetest.register_node("terrortest_core:" .. name .. "_tree", {
+    description = pretty_name .. " Tree Log",
+    tiles = {
+      "terrortest_" .. name .. "_tree_top.png",
+      "terrortest_" .. name .. "_tree_top.png",
+      "terrortest_" .. name .. "_tree_side.png",
+      "terrortest_" .. name .. "_tree_side.png",
+      "terrortest_" .. name .. "_tree_side.png",
+      "terrortest_" .. name .. "_tree_side.png",
+    },
+    is_ground_content = false,
+    groups = {choppy = 2, oddly_breakable_by_hand = 1, wood = 1, tree = 1, flammable = 2},
+  })
+
+  minetest.register_node("terrortest_core:" .. name .. "_planks", {
+    description = pretty_name .. " Tree Planks",
+    tiles = {"terrortest_" .. name .. "_planks.png",},
+    is_ground_content = false,
+    groups = {choppy = 2, oddly_breakable_by_hand = 1, wood = 1, planks = 1, flammable = 2},
+  })
+
+  minetest.register_craft({
+    type = "shapeless",
+    output = "terrortest_core:" .. name .. "_planks 4",
+    recipe = {"terrortest_core:" .. name .. "_tree"},
+  })
+
+  minetest.register_craft({
+    type = "shapeless",
+    output = "terrortest_core:stick 4",
+    recipe = {"terrortest_core:" .. name .. "_planks"},
+  })
+end
+
+tt_register_wood_type("barren", "Barren")

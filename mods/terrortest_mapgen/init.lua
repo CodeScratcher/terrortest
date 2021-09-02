@@ -1,9 +1,15 @@
-local night = false
+--------------------
+---- Misc Stuff ----
+--------------------
 
 minetest.register_alias("mapgen_stone",              "terrortest_core:stone")
 minetest.register_alias("mapgen_water_source",       "terrortest_core:water_source")
 minetest.register_alias("mapgen_river_water_source", "terrortest_core:river_water_source")
 minetest.register_alias("mapgen_lava_source",        "terrortest_core:lava_source")
+
+-----------------------
+---- Biomes/Mapgen ----
+-----------------------
 
 minetest.register_biome({
     name = "stonelands",
@@ -46,6 +52,12 @@ end
 
 tt_register_ore_gen("coal", 8 * 8 * 8, 9, 3, 31000,   1025)
 tt_register_ore_gen("coal", 8 * 8 * 8, 8, 3,    64, -31000)
+
+----------------
+---- Skybox ----
+----------------
+
+local night = false
 
 minetest.register_on_joinplayer(function(player)
     if night then
